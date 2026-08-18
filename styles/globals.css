@@ -1,0 +1,106 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Prevents any single unexpectedly-wide element (a long tuition title, an
+   unbroken phone number, etc.) from creating horizontal page scroll on
+   small screens — the #1 cause of "mobile UX feels broken" bug reports. */
+html,
+body {
+  overflow-x: hidden;
+  width: 100%;
+}
+
+:root {
+  --radius: 0.75rem;
+  --paper: 247 249 252;
+  --paper-tint: 234 242 255;
+}
+
+.dark {
+  --paper: 8 14 28;
+  --paper-tint: 15 23 42;
+}
+
+* {
+  border-color: theme("colors.slate.200");
+}
+.dark * {
+  border-color: theme("colors.slate.800");
+}
+
+body {
+  background-color: rgb(var(--paper));
+  color: theme("colors.slate.700");
+  font-feature-settings: "cv02", "cv03", "cv04", "cv11";
+}
+.dark body {
+  color: theme("colors.slate.200");
+}
+
+/* Signature: faint ruled-notebook texture, used sparingly behind the hero only */
+.ruled-paper {
+  background-image: repeating-linear-gradient(
+    to bottom,
+    transparent,
+    transparent 35px,
+    rgba(11, 37, 89, 0.06) 36px
+  );
+}
+.dark .ruled-paper {
+  background-image: repeating-linear-gradient(
+    to bottom,
+    transparent,
+    transparent 35px,
+    rgba(255, 255, 255, 0.05) 36px
+  );
+}
+
+/* Signature: dog-eared corner fold on interactive cards */
+.fold-card {
+  position: relative;
+  overflow: hidden;
+}
+.fold-card::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 0;
+  height: 0;
+  border-style: solid;
+  border-width: 0 22px 22px 0;
+  border-color: transparent theme("colors.brand.gold") transparent transparent;
+  opacity: 0;
+  transform: translate(6px, -6px);
+  transition: opacity 0.25s ease, transform 0.25s ease;
+}
+.fold-card:hover::after {
+  opacity: 1;
+  transform: translate(0, 0);
+}
+
+.glass {
+  background: rgba(255, 255, 255, 0.65);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+}
+.dark .glass {
+  background: rgba(8, 14, 28, 0.65);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.001ms !important;
+  }
+}
+
+:focus-visible {
+  outline: 2px solid theme("colors.brand.blue");
+  outline-offset: 2px;
+  border-radius: 4px;
+}
