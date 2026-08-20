@@ -134,6 +134,7 @@ export function LoginForm() {
         <Input
           label="Password"
           type="password"
+          showPasswordToggle
           placeholder="••••••••"
           {...loginForm.register("password")}
           error={loginForm.formState.errors.password?.message}

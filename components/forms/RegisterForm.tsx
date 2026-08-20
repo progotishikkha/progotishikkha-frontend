@@ -85,6 +85,7 @@ export function RegisterForm({ role }: { role: Extract<UserRole, "student" | "tu
       <Input
         label="Password"
         type="password"
+        showPasswordToggle
         placeholder="At least 8 characters"
         {...register("password")}
         error={errors.password?.message}
@@ -92,6 +93,7 @@ export function RegisterForm({ role }: { role: Extract<UserRole, "student" | "tu
       <Input
         label="Confirm password"
         type="password"
+        showPasswordToggle
         {...register("confirmPassword")}
         error={errors.confirmPassword?.message}
       />
